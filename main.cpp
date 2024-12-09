@@ -4,7 +4,6 @@ double celsiusToKelvin(double celsius){
 }
 
 double celsiusToFahrenheit(double celsius){
-	//C/5 = (F - 32)/9
 	return ( ((celsius/5) * 9) + 32 );
 }
 
@@ -27,15 +26,21 @@ double kelvinToFahrenheit(double kelvin){
 }
 
 int main(int argc, char* argv[]){
-	double temperature = std::stod(argv[2]);
+
+	if(argc <= 1){
+		std::cout << "Usage: Executable [options] <temperature>" << "\n\n";
+		std::cout << "Options: temperature scales to convert from and to\n";
+		std::cout << "f: Fahrenheit\nc: Celsius\nk: kelvin\n\n";
+		std::cout << "Example: Executable -fc 157\n" << "Convert 157F to Celsius.\n";
+	}
+	else{
+
+	}
+	/* double temperature = std::stod(argv[2]);
 	double result;
 
 	char origin_scale = argv[1][1];
-	char final_scale = argv[1][2];
+	char final_scale = argv[1][2];*/
 
-	std::cout << "Hello World!\n";
-	std::string foo = argv[argc - 1];
-	
-	std::cout << "TEMP:" << celsiusToFahrenheit(57 );
 	return 0;
 }
