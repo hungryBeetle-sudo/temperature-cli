@@ -34,13 +34,38 @@ int main(int argc, char* argv[]){
 		std::cout << "Example: Executable -fc 157\n" << "Convert 157F to Celsius.\n";
 	}
 	else{
+		double temperature = std::stod(argv[2]);
+		double result;
+		char origin_scale = argv[1][1];
+		char target_scale = argv[1][2];
 
+		if(origin_scale == 'f'){
+			if(target_scale == 'c'){
+				result = fahrenheitToCelsius(temperature);
+			}
+			else if(target_scale == 'k'){
+				result = fahrenheitToKelvin(temperature);
+			}
+		}
+		else if(origin_scale == 'c'){
+			if(target_scale == 'f'){
+				result = celsiusToFahrenheit(temperature);
+			}
+			else if(target_scale == 'k'){
+				result = celsiusToKelvin(temperature);
+			}
+		}
+		else if(origin_scale == 'k'){
+			if(target_scale == 'f'){
+				result = kelvinToFahrenheit(temperature);
+			}
+			else if(target_scale == 'c'){
+				result = kelvinToCelsius(temperature);
+			}
+		}
+		
+		std::cout << result << "\n";
 	}
-	/* double temperature = std::stod(argv[2]);
-	double result;
-
-	char origin_scale = argv[1][1];
-	char final_scale = argv[1][2];*/
 
 	return 0;
 }
