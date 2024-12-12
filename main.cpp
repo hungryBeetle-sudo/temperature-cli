@@ -44,38 +44,58 @@ int main(int argc, char* argv[]){
 		bool hasValidOptions { std::regex_match(options, options_regex) };
 		
 		if(hasValidOptions){
+			//The program will accept numbers either with '.' or ','
+			auto user_input_temperature_regex = std::regex("^([0-9]+([.]|[,])?[0-9]+)$");
+			bool isUserInputValid = std::regex_match(user_input_temperature, user_input_temperature_regex);
 
-			double temperature = std::stod(user_input_temperature);
-			double result;
-			char origin_scale = options[1];
-			char target_scale = options[2];
+			if(isUserInputValid){
+				//Must replace ',' for '.' before number operations
+				std::size_t comma_position = user_input_temperature.find(",", 0);
+				
+				if(comma_position != std::string::npos){
+					user_input_temperature.replace(comma_position, 1, ".");
+				}
 
-			if(origin_scale == 'f'){
-				if(target_scale == 'c'){
-					result = fahrenheitToCelsius(temperature);
+				double temperature = std::stod(user_input_temperature);
+				double result;
+				char origin_scale = options[1];
+				char target_scale = options[2];
+
+				if(origin_scale == target_scale){
+					result = temperature;
 				}
-				else if(target_scale == 'k'){
-					result = fahrenheitToKelvin(temperature);
+				else if(origin_scale == 'f'){
+					if(target_scale == 'c'){
+						result = fahrenheitToCelsius(temperature);
+					}
+					else if(target_scale == 'k'){
+						result = fahrenheitToKelvin(temperature);
+					}
 				}
+				else if(origin_scale == 'c'){
+					if(target_scale == 'f'){
+						result = celsiusToFahrenheit(temperature);
+					}
+					else if(target_scale == 'k'){
+						result = celsiusToKelvin(temperature);
+					}
+				}
+				else if(origin_scale == 'k'){
+					if(target_scale == 'f'){
+						result = kelvinToFahrenheit(temperature);
+					}
+					else if(target_scale == 'c'){
+						result = kelvinToCelsius(temperature);
+					}
+				}
+				
+				std::cout << result << "\n";
 			}
-			else if(origin_scale == 'c'){
-				if(target_scale == 'f'){
-					result = celsiusToFahrenheit(temperature);
-				}
-				else if(target_scale == 'k'){
-					result = celsiusToKelvin(temperature);
-				}
+			else{
+				std::cout << "Invalid temperature: " << user_input_temperature;
 			}
-			else if(origin_scale == 'k'){
-				if(target_scale == 'f'){
-					result = kelvinToFahrenheit(temperature);
-				}
-				else if(target_scale == 'c'){
-					result = kelvinToCelsius(temperature);
-				}
-			}
+
 			
-			std::cout << result << "\n";
 		}
 		else{
 			std::cout << "Invalid Options: " << options << "\n";
