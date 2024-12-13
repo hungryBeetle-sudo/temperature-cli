@@ -6,11 +6,7 @@ double celsiusToKelvin(double celsius){
 }
 
 double celsiusToFahrenheit(double celsius){
-	return ( ((celsius/5) * 9) + 32 );
-}
-
-double kelvinToCelsius(double kelvin){
-	return kelvin - 273;
+	return (((celsius/5) * 9 ) + 32 );
 }
 
 double fahrenheitToCelsius(double fahrenheit){
@@ -18,13 +14,15 @@ double fahrenheitToCelsius(double fahrenheit){
 }
 
 double fahrenheitToKelvin(double fahrenheit){
-	double celsius = fahrenheitToCelsius(fahrenheit);
-	return celsiusToKelvin(celsius);
+	return (((fahrenheit - 32) / 9 ) * 5) + 273;
+}
+
+double kelvinToCelsius(double kelvin){
+	return kelvin - 273;
 }
 
 double kelvinToFahrenheit(double kelvin){
-	double celsius = kelvinToCelsius(kelvin);
-	return fahrenheitToCelsius(celsius);
+	return (((kelvin - 273) / 5) * 9) + 32;
 }
 
 int main(int argc, char* argv[]){
