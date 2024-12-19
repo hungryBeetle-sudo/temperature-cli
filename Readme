@@ -1,0 +1,33 @@
+
+# Temperature Converter
+
+A temperature converter. Conversion between celsius, kelvin and fahrenheit scales.
+
+## Usage/Examples
+
+```
+executable -[options] temperature
+```
+
+**options:**
+- f: fahrenheit
+- c: celsius
+- k: kelvin
+
+**temperature**:
+
+Valid Number formats: 
+- 57
+- 223,1
+- 321.8
+
+Example:
+```
+./main -ck 100,0
+```
+Convert 100 degrees from celsius to kelvin
+
+## License
+
+[GNU GPLv3](https://choosealicense.com/licenses/gpl-3.0/)
+
